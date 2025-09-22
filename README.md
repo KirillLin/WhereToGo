@@ -5,5 +5,17 @@
 Language: Java.  
 Interface language: xml.
 
-[SRS of program](https://github.com/KirilLlin/WhereToGo/docs/src/SRS.md)
+## 📑 Документация
+* [SRS of program](https://github.com/KirillLin/WhereToGo/docs/src/SRS.md)
+* [Диаграммы]()  
+* Макет интерфейса - см.SRC
 
+## 💻 Исходный код
+
+- [Java-код]()
+- [XML-код]()  
+
+## 🧪 Тестирование
+
+- [План тестирования]()
+- [Результаты тестирования]()  
