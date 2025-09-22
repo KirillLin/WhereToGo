@@ -6,9 +6,9 @@ Language: Java.
 Interface language: xml.
 
 ## 📑 Документация
-* [SRS of program](https://github.com/KirillLin/WhereToGo/docs/src/SRS.md)
+* [SRS of program](https://github.com/KirillLin/WhereToGo/blob/main/docs/src/SRS.md)
 * [Диаграммы]()  
-* Макет интерфейса - см.SRC
+* Макет интерфейса - см.SRS
 
 ## 💻 Исходный код
 
