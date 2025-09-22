@@ -64,19 +64,19 @@ Google Maps — это монстр с сотнями функций (навиг
 ### 2.2 Интерфейс пользователя
 
 * Окно приветствия:
-https://docs/mock/Start.png
+  ![Приветствие](docs/mock/Start.png)
 
 * Окно проверки подключений: (при зелёных галочках автоматически переходит к следующей странице)
-https://docs/mock/Connect.png
+  ![Подключение](docs/mock/Connect.png)
 
 * Основное окно (карта):
-https://docs/mock/Map.png
+  ![Карта](docs/mock/Map.png)
 
 * Результат поиска:
-https://docs/mock/FoundedPlaces.png
+  ![Результат](docs/mock/FoundedPlaces.png)
 
 * На каждое место можно нажать и посмотреть информацию:
-https://docs/mock/SelectedPlaces.png
+  ![Место](docs/mock/SelectedPlaces.png)
 
 ### 2.3 Характеристики пользователей
 *   **Основная группа:** Взрослые пользователи (15-55 лет), владеющие смартфонами с доступом в интернет.
