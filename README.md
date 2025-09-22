@@ -6,7 +6,7 @@
 
 ## Разработка
 * Language: Java.  
-* Interface language: xml.
+* Interface language: JS.
 
 ## 📑 Документация
 * [SRS of program](https://github.com/KirillLin/WhereToGo/blob/main/docs/src/SRS.md)
