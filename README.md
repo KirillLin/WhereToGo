@@ -10,7 +10,7 @@
 
 ## 📑 Документация
 * [SRS of program](https://github.com/KirillLin/WhereToGo/blob/main/docs/src/SRS.md)
-* [Диаграммы]()  
+* [Диаграммы](https://github.com/KirillLin/WhereToGo/blob/main/docs/diagrams)  
 * [Макет интерфейса](https://github.com/KirillLin/WhereToGo/blob/main/docs/mock)
 
 ## 💻 Исходный код
