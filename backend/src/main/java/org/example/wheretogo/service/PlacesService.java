@@ -1,89 +1,56 @@
 package org.example.wheretogo.service;
 
 import org.example.wheretogo.model.Place;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class PlacesService {
 
-    @Value("${foursquare.api.key:demo}")
-    private String apiKey;
-
-    private final RestTemplate restTemplate;
-
-    public PlacesService() {
-        this.restTemplate = new RestTemplate();
-    }
+    @Autowired
+    private FoursquareService foursquareService;
 
     public List<Place> findPlacesNearby(double lat, double lon, int radius) {
-        try {
-            // Для демо-режима возвращаем тестовые данные
-            return getDemoPlaces(lat, lon);
-
-        } catch (Exception e) {
-            System.out.println("Ошибка при поиске мест: " + e.getMessage());
-            return getDemoPlaces(lat, lon);
-        }
+        return foursquareService.searchNearby(lat, lon, radius, 15);
     }
 
     public List<Place> getRandomPlaces(double lat, double lon, int count) {
         List<Place> allPlaces = findPlacesNearby(lat, lon, 1000);
         Collections.shuffle(allPlaces);
-        return allPlaces.stream().limit(count).toList();
+        return allPlaces.stream()
+                .limit(Math.min(count, allPlaces.size()))
+                .collect(Collectors.toList());
     }
 
     public List<Place> searchPlaces(String query, double lat, double lon) {
         List<Place> allPlaces = findPlacesNearby(lat, lon, 2000);
         return allPlaces.stream()
-                .filter(place -> place.getName().toLowerCase().contains(query.toLowerCase()))
-                .toList();
+                .filter(place ->
+                        place.getName().toLowerCase().contains(query.toLowerCase()) ||
+                                (place.getCategory() != null &&
+                                        place.getCategory().toLowerCase().contains(query.toLowerCase())) ||
+                                (place.getDescription() != null &&
+                                        place.getDescription().toLowerCase().contains(query.toLowerCase()))
+                )
+                .collect(Collectors.toList());
     }
 
-    private List<Place> getDemoPlaces(double lat, double lon) {
-        Random random = new Random();
-        String[] categories = {"Кафе", "Ресторан", "Парк", "Магазин", "Бар", "Музей", "Кинотеатр"};
-        String[] streets = {"Центральная", "Ленина", "Пушкина", "Гагарина", "Советская", "Мира"};
-
-        List<Place> places = new ArrayList<>();
-
-        for (int i = 1; i <= 10; i++) {
-            String category = categories[random.nextInt(categories.length)];
-            String street = streets[random.nextInt(streets.length)];
-
-            Place place = new Place(
-                    "demo_" + i,
-                    generatePlaceName(category, i),
-                    category,
-                    lat + (random.nextDouble() - 0.5) * 0.02, // ± ~1km
-                    lon + (random.nextDouble() - 0.5) * 0.02,
-                    "ул. " + street + ", " + (random.nextInt(100) + 1),
-                    random.nextDouble() * 1000
-            );
-
-            // Добавляем рейтинг для некоторых мест
-            if (random.nextBoolean()) {
-                place.setRating(3 + random.nextDouble() * 2); // Рейтинг 3-5
-            }
-
-            places.add(place);
-        }
-
-        return places;
+    public List<Place> getPlacesByCategory(double lat, double lon, String category) {
+        List<Place> allPlaces = findPlacesNearby(lat, lon, 1000);
+        return allPlaces.stream()
+                .filter(place -> place.getCategory() != null &&
+                        place.getCategory().equalsIgnoreCase(category))
+                .collect(Collectors.toList());
     }
 
-    private String generatePlaceName(String category, int index) {
-        String[] prefixes = {"Уютный", "Современный", "Старинный", "Семейный", "Премиум"};
-        String[] suffixes = {"у реки", "в центре", "на площади", "у метро", ""};
+    public Optional<Place> getPlaceDetails(String placeId) {
+        return foursquareService.getPlaceDetails(placeId);
+    }
 
-        Random random = new Random();
-        String prefix = prefixes[random.nextInt(prefixes.length)];
-        String suffix = suffixes[random.nextInt(suffixes.length)];
-
-        return prefix + " " + category + " " + suffix + " " + index;
+    public Map<String, String> getAvailableCategories() {
+        return foursquareService.getAvailableCategories();
     }
 }
