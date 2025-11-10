@@ -17,6 +17,11 @@ public class UserService {
         return userRepository.findByEmail(email);
     }
 
+    // ДОБАВИТЬ этот метод
+    public Optional<User> findById(Long id) {
+        return userRepository.findById(id);
+    }
+
     public boolean existsByEmail(String email) {
         return userRepository.existsByEmail(email);
     }
