@@ -1,0 +1,597 @@
+.map-page {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Панель управления */
+.map-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background: #fff;
+    border-bottom: 1px solid #e0e0e0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.controls-left {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.controls-right {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.category-select {
+    padding: 0.75rem 1rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    background: white;
+    min-width: 200px;
+}
+
+.search-btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.search-btn.primary {
+    background: #007bff;
+    color: white;
+}
+
+.search-btn.primary:hover:not(:disabled) {
+    background: #0056b3;
+    transform: translateY(-2px);
+}
+
+.search-btn:disabled {
+    background: #6c757d;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.toggle-list-btn {
+    padding: 0.75rem 1.5rem;
+    border: 1px solid #007bff;
+    border-radius: 8px;
+    background: white;
+    color: #007bff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.toggle-list-btn:hover {
+    background: #007bff;
+    color: white;
+}
+
+.location-btn {
+    padding: 0.5rem 1rem;
+    border: 1px solid #007bff;
+    border-radius: 6px;
+    background: white;
+    color: #007bff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.location-btn:hover {
+    background: #007bff;
+    color: white;
+}
+
+.location-info {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+/* Основной контент */
+.map-content {
+    display: flex;
+    flex: 1;
+    position: relative;
+}
+
+/* Сайдбар со списком мест */
+.places-sidebar {
+    width: 400px;
+    background: white;
+    border-right: 1px solid #e0e0e0;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 2px 0 8px rgba(0,0,0,0.1);
+    z-index: 500;
+}
+
+.places-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid #e0e0e0;
+    background: #f8f9fa;
+}
+
+.places-header h3 {
+    margin: 0 0 0.5rem 0;
+    color: #333;
+}
+
+.places-count {
+    color: #666;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.places-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1rem;
+}
+
+/* Карточка места */
+.place-card {
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.place-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    border-color: #007bff;
+}
+
+.place-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.75rem;
+}
+
+.place-card-title {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #333;
+    line-height: 1.3;
+}
+
+.place-card-category {
+    background: #e3f2fd;
+    color: #1976d2;
+    padding: 0.25rem 0.5rem;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.place-card-info {
+    margin-bottom: 1rem;
+}
+
+.place-card-details {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.place-distance {
+    color: #666;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.place-rating {
+    color: #f57c00;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.place-address {
+    color: #666;
+    font-size: 0.9rem;
+    margin: 0;
+    line-height: 1.4;
+}
+
+.place-card-actions {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.btn-details {
+    flex: 1;
+    padding: 0.5rem 1rem;
+    border: 1px solid #007bff;
+    border-radius: 6px;
+    background: white;
+    color: #007bff;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.btn-details:hover {
+    background: #007bff;
+    color: white;
+}
+
+.btn-favorite {
+    padding: 0.5rem 1rem;
+    border: 1px solid #dc3545;
+    border-radius: 6px;
+    background: white;
+    color: #dc3545;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.btn-favorite:hover:not(.favorited):not(:disabled) {
+    background: #dc3545;
+    color: white;
+}
+
+.btn-favorite.favorited {
+    background: #6c757d;
+    color: white;
+    border-color: #6c757d;
+    cursor: default;
+}
+
+.btn-favorite:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Контейнер карты */
+.map-container {
+    flex: 1;
+    position: relative;
+    min-height: 400px;
+    transition: all 0.3s ease;
+}
+
+.map-container.with-sidebar {
+    margin-left: 0;
+}
+
+/* Статус поиска */
+.search-status {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.95);
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.spinner {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #f3f3f3;
+    border-top: 2px solid #007bff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Стили для попапов */
+.user-popup {
+    text-align: center;
+    min-width: 200px;
+}
+
+.place-popup-preview {
+    min-width: 220px;
+}
+
+.place-details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 0.5rem 0;
+}
+
+.category-badge, .distance-badge, .rating-badge {
+    padding: 0.25rem 0.5rem;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.category-badge {
+    background: #e3f2fd;
+    color: #1976d2;
+}
+
+.distance-badge {
+    background: #f3e5f5;
+    color: #7b1fa2;
+}
+
+.rating-badge {
+    background: #fff8e1;
+    color: #f57c00;
+}
+
+.popup-actions {
+    margin-top: 0.75rem;
+}
+
+.details-btn {
+    width: 100%;
+    padding: 0.5rem;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.details-btn:hover {
+    background: #0056b3;
+}
+
+/* Состояние загрузки */
+.map-page.loading {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #f8f9fa;
+}
+
+.loading-spinner {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .map-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .controls-left, .controls-right {
+        justify-content: center;
+    }
+
+    .category-select {
+        min-width: 150px;
+    }
+
+    .places-sidebar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        z-index: 1000;
+        background: white;
+    }
+
+    .map-container.with-sidebar {
+        display: none;
+    }
+
+    .place-card-actions {
+        flex-direction: column;
+    }
+}
+
+/* Стили для всплывающей подсказки при наведении */
+.map-tooltip {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    max-width: 300px;
+    animation: tooltipAppear 0.3s ease-out;
+}
+
+@keyframes tooltipAppear {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.place-tooltip {
+    background: white;
+    border-radius: 12px;
+    padding: 1.25rem;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    border: 1px solid #e0e0e0;
+    backdrop-filter: blur(10px);
+}
+
+.tooltip-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.75rem;
+}
+
+.tooltip-header h4 {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #333;
+    line-height: 1.3;
+    flex: 1;
+    margin-right: 0.5rem;
+}
+
+.tooltip-category {
+    background: #007bff;
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.tooltip-info {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.tooltip-distance {
+    color: #666;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.tooltip-rating {
+    color: #f57c00;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.tooltip-address {
+    color: #666;
+    font-size: 0.85rem;
+    margin: 0 0 0.75rem 0;
+    line-height: 1.4;
+}
+
+.tooltip-hint {
+    text-align: center;
+    padding-top: 0.5rem;
+    border-top: 1px solid #f0f0f0;
+}
+
+.tooltip-hint small {
+    color: #888;
+    font-size: 0.75rem;
+}
+
+/* Улучшенные стили для попапов на карте */
+.place-popup-preview {
+    min-width: 220px;
+    text-align: center;
+}
+
+.place-popup-preview h4 {
+    margin: 0 0 0.5rem 0;
+    color: #333;
+    font-size: 1.1rem;
+}
+
+.place-popup-preview .place-details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 0.5rem 0;
+    justify-content: center;
+}
+
+.place-popup-preview .category-badge {
+    background: #007bff;
+    color: white;
+    padding: 0.3rem 0.6rem;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.place-popup-preview .distance-badge {
+    background: #28a745;
+    color: white;
+    padding: 0.3rem 0.6rem;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.popup-actions {
+    margin-top: 0.75rem;
+}
+
+.details-btn {
+    width: 100%;
+    padding: 0.6rem;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    font-weight: 600;
+}
+
+.details-btn:hover {
+    background: #0056b3;
+    transform: translateY(-1px);
+}
+
+/* Адаптивность для тултипа */
+@media (max-width: 768px) {
+    .map-tooltip {
+        top: 10px;
+        right: 10px;
+        left: 10px;
+        max-width: none;
+    }
+
+    .place-tooltip {
+        padding: 1rem;
+    }
+
+    .tooltip-header {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .tooltip-header h4 {
+        margin-right: 0;
+    }
+}
