@@ -15,8 +15,8 @@
 
 ## 💻 Исходный код
 
-- [Java-код]()
-- [JS-код]()  
+- [Java-код (backend)](https://github.com/KirillLin/WhereToGo/backend)
+- [JS-код (frontend)](https://github.com/KirillLin/WhereToGo/frontend)  
 
 ## 🧪 Тестирование
 

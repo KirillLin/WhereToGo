@@ -55,7 +55,7 @@ function WelcomePage({ onStart }) {
                         onClick={handleStart}
                         disabled={isLoading}
                     >
-                        {isLoading ? '🚀 Загрузка...' : '🎯 Начать'}
+                        {isLoading ? '🚀 Загрузка...' : 'Начать'}
                     </button>
 
                     <button
