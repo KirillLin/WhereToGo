@@ -18,7 +18,6 @@ public class FoursquareService {
     @Value("${foursquare.api.url:https://api.foursquare.com/v3/places}")
     private String apiUrl;
 
-    // 10 основных категорий вместо 1500+ (СТАРАЯ ЛОГИКА)
     private final Map<String, String> CATEGORIES = Map.of(
             "13000", "Еда",           // Food
             "13065", "Кофейня",       // Coffee Shop
@@ -32,7 +31,7 @@ public class FoursquareService {
             "16038", "Галерея"        // Art Gallery
     );
 
-    // Улучшенные демо-данные (НОВАЯ ЛОГИКА)
+
     private final String[] REAL_PLACE_NAMES = {
             "Starbucks", "McDonald's", "KFC", "Burger King", "Subway",
             "Кофейня 'Уют'", "Бар 'Паб'", "Парк Горького", "ТЦ 'Афимолл'",
@@ -65,12 +64,11 @@ public class FoursquareService {
             return searchNearbyReal(lat, lon, radius, limit);
         } catch (Exception e) {
             System.err.println("❌ Ошибка Foursquare API, переключаемся на демо-данные: " + e.getMessage());
-            // НОВАЯ ЛОГИКА: Fallback на улучшенные демо-данные при ошибках API
+
             return getEnhancedDemoPlaces(lat, lon, limit);
         }
     }
 
-    // СТАРАЯ ЛОГИКА: Реальный вызов Foursquare API
     private List<Place> searchNearbyReal(double lat, double lon, int radius, int limit) {
         String categories = String.join(",", CATEGORIES.keySet());
 
@@ -94,12 +92,10 @@ public class FoursquareService {
         throw new RuntimeException("API вернул статус: " + response.getStatusCode());
     }
 
-    // НОВАЯ ЛОГИКА: Улучшенные демо-данные с реальными названиями
     private List<Place> getEnhancedDemoPlaces(double lat, double lon, int limit) {
         Random random = new Random();
         List<Place> places = new ArrayList<>();
 
-        // Создаем более реалистичный набор мест
         for (int i = 0; i < limit; i++) {
             String placeName = REAL_PLACE_NAMES[random.nextInt(REAL_PLACE_NAMES.length)];
             String category = determineCategoryFromName(placeName);

@@ -158,14 +158,16 @@ function MapPage({ user }) {
             const location = await getCurrentLocation();
             console.log('📍 Получены координаты:', location);
 
-            setUserLocation(location);
-            setMapCenter([location.latitude, location.longitude]);
+            //setUserLocation(location);
+            setUserLocation({ latitude: 53.9116, longitude: 27.5955 });
+            //setMapCenter([location.latitude, location.longitude]);
+            setMapCenter([53.9116, 27.5955]);
             setMapZoom(15);
         } catch (error) {
             console.error('❌ Ошибка получения местоположения:', error);
             alert('Включите геолокацию ->');
             // Используем координаты по умолчанию
-            setUserLocation({ latitude: defaultCenter[0], longitude: defaultCenter[1] });
+            setUserLocation({ latitude: 1, longitude: 1});
             setMapCenter(defaultCenter);
             setMapZoom(10);
         } finally {
