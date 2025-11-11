@@ -20,5 +20,5 @@
 
 ## 🧪 Тестирование
 
-- [План тестирования]()
-- [Результаты тестирования]()  
+- [План тестирования](https://github.com/KirillLin/WhereToGo/blob/main/docs/test/test_plan.md)
+- [Результаты тестирования](https://github.com/KirillLin/WhereToGo/blob/main/docs/test/test_result.md)  
