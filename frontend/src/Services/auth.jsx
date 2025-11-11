@@ -25,8 +25,7 @@ const generateUserId = () => {
 export const loginUser = async (email, password) => {
     try {
         console.log('🔑 Попытка входа:', email);
-
-        // Сначала пробуем через API
+        
         try {
             const response = await fetch(`${API_BASE_URL}/auth/login`, {
                 method: 'POST',
@@ -78,7 +77,7 @@ export const registerUser = async (email, password, username = null) => {
     try {
         console.log('📝 Попытка регистрации:', { email, username });
 
-        // Валидация
+
         if (!email || !password) {
             throw new Error('Email и пароль обязательны');
         }
